@@ -5,8 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Passwords_And_Logins"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Title="MainWindow" Height="400" Width="400">
     <Grid>
-        
+        <Button Name="SignInBtn" Width="100" HorizontalContentAlignment="Center" Margin="47,28,47,111" Content="Sign in" Click="Sign_In_Click"/>
+        <Button Name="SignUpBtn" Width="100" HorizontalContentAlignment="Center" Margin="47,110,47,29" Content="Sign up"/>
     </Grid>
 </Window>
