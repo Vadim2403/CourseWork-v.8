@@ -1,0 +1,39 @@
+﻿<Window x:Class="Passwords_And_Logins.SighUpWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Passwords_And_Logins"
+        mc:Ignorable="d"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"
+        Title="Window1" Height="450" Width="450" Closed="Window_Closed">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="300"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Grid.Column="0" Grid.Row="1" Content="Email" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="Green"></Label>
+        <Label Grid.Column="0" Grid.Row="2" Content="Login" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="Green"></Label>
+        <Label Grid.Column="0" Grid.Row="3" Content="Password" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="Green"></Label>
+        <Label Grid.Column="0" Grid.Row="4" Content="Confirm" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="Green"></Label>
+        <TextBox  Name="EmailBox" Grid.Column="1" Grid.Row="1" TextAlignment="Left" FontSize="16" VerticalAlignment="Center"  Width="255" Height="38"/>
+        <TextBox Name="LoginBox"  Grid.Column="1" Grid.Row="2" TextAlignment="Left" FontSize="16" VerticalAlignment="Center"  Width="255" Height="38" LostFocus="LoginBox_LostFocus"/>
+        <PasswordBox Name="PassField" Grid.Column="1" Grid.Row="3" FontSize="16"  VerticalAlignment="Center" Width="255" Height="38" AutomationProperties.HelpText="Password"/>
+        <PasswordBox   Name="ConfPassField" Grid.Column="1" Grid.Row="4" FontSize="16"  VerticalAlignment="Center" Width="255" Height="38" LostFocus="ConfPassField_LostFocus"/>
+        <Button Foreground="White" Grid.Row="5" Grid.Column="1" Name="LoginBtn" Width="100" HorizontalContentAlignment="Center" Content="Finish" Click="LoginBtn_Click"/>
+        <Label Visibility="Hidden" Name="FailConfirmPass" Grid.Column="2" Grid.Row="4" Content="not equal" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="Red"/>
+        <Label Visibility="Hidden" Name="FailLogin" Grid.Column="2" Grid.Row="2" Content="Busy" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="Red"/>
+    </Grid>
+</Window>

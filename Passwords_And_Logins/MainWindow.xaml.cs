@@ -20,6 +20,7 @@ namespace Passwords_And_Logins
     /// </summary>
     public partial class MainWindow : Window
     {
+        public List<User> List_for_users = new List<User>();
         public MainWindow()
         {
             InitializeComponent();
@@ -31,8 +32,28 @@ namespace Passwords_And_Logins
             SignUpBtn.IsEnabled = false;
 
             Window1 signInWindow = new Window1();
+            signInWindow.Owner = this;
             signInWindow.Show();
 
+
         }
+        private void Sign_Up_Click(object sender, RoutedEventArgs e)
+        {
+            SignInBtn.IsEnabled = false;
+            SignUpBtn.IsEnabled = false;
+
+            SighUpWindow signUpWindow = new SighUpWindow();
+            signUpWindow.Owner = this;
+            signUpWindow.Show();
+    
+
+        }
+    }
+
+    public class User
+    {
+        public string Email { get; set; }
+        public string Login { get; set; }
+        public string Password { get; set; }
     }
 }

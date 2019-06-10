@@ -12,7 +12,7 @@
         TextOptions.TextRenderingMode="Auto"        
         Title="MainWindow" Height="400" Width="400">
     <Grid>
-        <Button Name="SignInBtn" Width="100" HorizontalContentAlignment="Center" Margin="47,28,47,111" Content="Sign in" Click="Sign_In_Click"/>
-        <Button Name="SignUpBtn" Width="100" HorizontalContentAlignment="Center" Margin="47,110,47,29" Content="Sign up"/>
+        <Button Foreground="White" Name="SignInBtn" Width="100" HorizontalContentAlignment="Center" Margin="47,28,47,111" Content="Sign in" Click="Sign_In_Click"/>
+        <Button Foreground="White" Name="SignUpBtn" Width="100" HorizontalContentAlignment="Center" Margin="47,110,47,29" Content="Sign up"  Click="Sign_Up_Click"/>
     </Grid>
 </Window>

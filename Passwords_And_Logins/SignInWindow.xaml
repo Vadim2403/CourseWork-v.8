@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Passwords_And_Logins"
         mc:Ignorable="d"
-        Title="Window1" Height="450" Width="450">
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"
+        Title="Window1" Height="450" Width="450" Closed="Window_Closed">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -20,7 +22,8 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBox Grid.Column="1" Grid.Row="1" TextAlignment="Left" FontSize="16" VerticalAlignment="Center"  Text="Login" Width="255" Height="38"/>
-        <TextBox Grid.Column="1" Grid.Row="2" TextAlignment="Left" FontSize="16"  VerticalAlignment="Center" Text="Password" Width="255" Height="38"/>
+        <TextBox Grid.Column="1" Grid.Row="1" TextAlignment="Left" FontSize="16" VerticalAlignment="Center"  Width="255" Height="38"/>
+        <PasswordBox Grid.Column="1" Grid.Row="2" FontSize="16"  VerticalAlignment="Center" Width="255" Height="38"/>
+        <Button Foreground="White" Grid.Row="3" Grid.Column="1" Name="LoginBtn" Width="100" HorizontalContentAlignment="Center" Content="Login"/>
     </Grid>
 </Window>

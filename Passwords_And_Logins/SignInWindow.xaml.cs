@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 
 namespace Passwords_And_Logins
 {
+
     /// <summary>
     /// Interaction logic for Window1.xaml
     /// </summary>
@@ -22,6 +23,12 @@ namespace Passwords_And_Logins
         public Window1()
         {
             InitializeComponent();
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            ((MainWindow)Owner).SignInBtn.IsEnabled = true;
+            ((MainWindow)Owner).SignUpBtn.IsEnabled = true;
         }
     }
 }
