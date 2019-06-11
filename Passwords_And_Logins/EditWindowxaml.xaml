@@ -1,5 +1,5 @@
-﻿<Window x:Class="Passwords_And_Logins.AddWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<Window x:Class="Passwords_And_Logins.EditWindowxaml"
+               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -29,14 +29,12 @@
         </Grid.RowDefinitions>
         <materialDesign:ColorZone Mode="Accent" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="2" Padding="16" Foreground="White" FontSize="30" FontWeight="Bold">
             <StackPanel Orientation="Horizontal">
-                <TextBlock VerticalAlignment="Center">Adding</TextBlock>
+                <TextBlock VerticalAlignment="Center">Editing</TextBlock>
             </StackPanel>
         </materialDesign:ColorZone>
         <TextBox  Name="Login" Grid.Column="1" Grid.Row="2" TextAlignment="Left" FontSize="16" VerticalAlignment="Center"  Width="255" Height="38"/>
         <TextBox Name="Password"  Grid.Column="1" Grid.Row="3" TextAlignment="Left" FontSize="16" VerticalAlignment="Center"  Width="255" Height="38"/>
-        <TextBox Name="Link"  Grid.Column="1" Grid.Row="4" TextAlignment="Left" FontSize="16" VerticalAlignment="Center"  Width="255" Height="38"/>
-        <TextBox Name="SiteName"  Grid.Column="1" Grid.Row="5" TextAlignment="Left" FontSize="16" VerticalAlignment="Center"  Width="255" Height="38"/>
-        <Button Name="NeedDescriptionBtn" Content="Add description" Grid.Column="1" Grid.Row="6" Width="180" Foreground="White" HorizontalContentAlignment="Center" Click="NeedDescriptionBtn_Click"></Button>
-        <Button Name="FinishAddingBtn" Content="Ok" Grid.Column="1" Grid.Row="7" Width="100" Foreground="White" HorizontalContentAlignment="Center" Click="FinishAddingBtn_Click"></Button>
+        <Button Name="NeedDescriptionBtn" Content="Edit description" Grid.Column="1" Grid.Row="4" Width="180" Foreground="White" HorizontalContentAlignment="Center"></Button>
+        <Button Name="FinishAddingBtn" Content="Ok" Grid.Column="1" Grid.Row="5" Width="100" Foreground="White" HorizontalContentAlignment="Center" Click="FinishAddingBtn_Click"></Button>
     </Grid>
 </Window>

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Passwords_And_Logins"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="UserWindow" Height="600" Width="800">
     <Grid>
@@ -12,8 +13,12 @@
             <RowDefinition Height="69"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="600"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
         <materialDesign:ColorZone
-            Grid.Row="0"
+            Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
   Foreground="White"
   Mode="Accent"
   Padding="16">
@@ -27,7 +32,31 @@
                 </TextBlock>
             </StackPanel>
         </materialDesign:ColorZone>
-        <DataGrid CanUserAddRows="False" Name="GridOFaccounts" Width="600" HorizontalAlignment="Right" Grid.Row="1" >
-        </DataGrid>
+        <DataGrid CanUserSortColumns="False" Grid.Column="1" CanUserAddRows="False" Name="GridOFaccounts" Width="600" Height="400" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Row="1"/>
+
+        <Button Name="MostPopularLogins" Grid.Column="1" FontSize="12" VerticalAlignment="Top" Margin="10,459,450,0" Content="Most Popular login" Grid.Row="1" Width="140" Foreground="White" HorizontalContentAlignment="Center" Click="MostPopularLogins_Click" />
+        <Button Name="MostPopularPasses" Grid.Column="1" FontSize="12" VerticalAlignment="Top" Margin="447,459,13,0" Content="Most Popular pass" Grid.Row="1" Width="140" Foreground="White" HorizontalContentAlignment="Center" Click="MostPopularPasses_Click" />
+        <Button Name="NeedDescriptionBtn" VerticalAlignment="Top" Margin="0,70,0,0" Content="Create Account" Grid.Row="1" Width="140" Foreground="White" HorizontalContentAlignment="Center" Click="NeedDescriptionBtn_Click"/>
+        <Button Name="EditBtn" VerticalAlignment="Top" Margin="0,120,0,0" Content="Edit Account" Grid.Row="1" Width="140" Foreground="White" HorizontalContentAlignment="Center" Click="EditBtn_Click" />
+        <Button Name="SearchBtn" VerticalAlignment="Top" Margin="0,170,0,0" Content="Search" Grid.Row="1" Width="140" Foreground="White" HorizontalContentAlignment="Center" Click="SearchBtn_Click"/>
+        <Button Name="CodeBtn" VerticalAlignment="Top" Margin="0,220,0,0" Content="Code Password" Grid.Row="1" Width="140" Foreground="White" HorizontalContentAlignment="Center" Click="CodeBtn_Click" />
+        <Button IsEnabled="False" Name="DeCodeBtn" VerticalAlignment="Top" Margin="0,270,0,0" Content="DeCode Password" Grid.Row="1" Width="140" Foreground="White" HorizontalContentAlignment="Center" Click="DeCodeBtn_Click" />
+        
+
+        <materialDesign:DialogHost DialogClosing="DialogHost_DialogClosing" CloseOnClickAway="True" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="2"   x:Name="DialogHost">
+            <materialDesign:DialogHost.DialogContent>
+                <TextBox Name="LoginForStat"  Margin="20"></TextBox>
+            </materialDesign:DialogHost.DialogContent>
+            <Button Content="Login Stats" Width="140" Foreground="White" HorizontalContentAlignment="Center" Click="ShowDialog_OnClick"
+       HorizontalAlignment="Left" VerticalAlignment="Center" Margin="428,28,0,510"/>
+        </materialDesign:DialogHost>
+        <materialDesign:DialogHost DialogClosing="DialogHost_DialogClosing_pass" CloseOnClickAway="True" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="2"   x:Name="DialogHostFOrpass">
+            <materialDesign:DialogHost.DialogContent>
+                <TextBox Name="PasswordForStat"  Margin="20"></TextBox>
+            </materialDesign:DialogHost.DialogContent>
+            <Button  Content="Password Stats" Width="140" Foreground="White" HorizontalContentAlignment="Center" Click="ShowDialog_OnClick_2"
+       HorizontalAlignment="Left" VerticalAlignment="Center" Margin="614,28,0,510"/>
+        </materialDesign:DialogHost>
+
     </Grid>
 </Window>

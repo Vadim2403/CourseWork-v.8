@@ -20,7 +20,8 @@ namespace Passwords_And_Logins
     public partial class UserWindow : Window
     {
         List<User> users;
-        List<Account> accounts;
+
+        public List<Account> accounts;
         int current;
         public UserWindow(List<User>users, int current)
         {
@@ -29,6 +30,165 @@ namespace Passwords_And_Logins
             this.current = current;
             accounts = users[current].accounts;
             GridOFaccounts.ItemsSource = accounts;
+        }
+
+
+
+        private void NeedDescriptionBtn_Click(object sender, RoutedEventArgs e)
+        {
+            AddWindow addWindow = new AddWindow();
+            addWindow.Owner = this;
+            addWindow.Show();
+        }
+
+        private void EditBtn_Click(object sender, RoutedEventArgs e)
+        {
+            EditWindowxaml editWindowxaml = new EditWindowxaml();
+            editWindowxaml.Owner = this;
+            editWindowxaml.Show();
+        }
+
+        private void CodeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (accounts.Count > 0)
+            {
+                string pass = "";
+                Random r = new Random();
+                for (int i = 0; i < accounts.Count; i++)
+                {
+                    pass = "";
+                    for (int j = 0; j < accounts[i].Password.Length; j++)
+                    {
+                        int digit;
+                        
+                           digit = Convert.ToInt32(accounts[i].Password[j]);
+                            digit += 10;
+                        if (digit > 255)
+                            digit = 255;
+                            pass = pass + (char)digit;
+
+                 
+              
+                        
+                    }
+                    accounts[i].Password = pass;
+
+                }
+                CodeBtn.IsEnabled = false;
+                DeCodeBtn.IsEnabled = true;
+                GridOFaccounts.Items.Refresh();
+            }
+        }
+
+        private void DeCodeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            for (int i = 0; i < accounts.Count; i++)
+            {
+                string pass = "";
+                for (int j = 0; j < accounts[i].Password.Length; j++)
+                {
+                   int digit = ((int)accounts[i].Password[j]) - 10;
+
+                        
+ 
+                    pass = pass + (char)digit;
+
+                   
+                }
+                accounts[i].Password = pass;
+            }
+            CodeBtn.IsEnabled = true;
+            DeCodeBtn.IsEnabled = false;
+            GridOFaccounts.Items.Refresh();
+        }
+
+        private void SearchBtn_Click(object sender, RoutedEventArgs e)
+        {
+            SearchWindow searchWindow = new SearchWindow();
+            searchWindow.Owner = this;
+            searchWindow.Show();
+        }
+
+        private void MostPopularLogins_Click(object sender, RoutedEventArgs e)
+        {
+            string most_popular_login ="";
+            string login ="";
+            int max = 0;
+            int count = 0;
+            for (int i = 0; i < accounts.Count; i++)
+            {
+                count = 0;
+                login = accounts[i].Login;
+                if (login == most_popular_login)
+                    continue;
+                for(int j = 0; j < accounts.Count; j++)
+                {
+                    if (login == accounts[j].Login)
+                        count++;
+                }
+                if (count > max)
+                {
+                    max = count;
+                    most_popular_login = login;
+                }
+            }
+            MessageBox.Show("Most popular login is " + most_popular_login + " Finded - " + max.ToString() + " times");
+        }
+
+
+        private void ShowDialog_OnClick(object sender, RoutedEventArgs e)
+        {
+            DialogHost.IsOpen = true;
+        }
+        private void ShowDialog_OnClick_2(object sender, RoutedEventArgs e)
+        {
+            DialogHostFOrpass.IsOpen = true;
+        }
+        private void MostPopularPasses_Click(object sender, RoutedEventArgs e)
+        {
+            string most_popular_pass = "";
+            string pass = "";
+            int max = 0;
+            int count = 0;
+            for (int i = 0; i < accounts.Count; i++)
+            {
+                count = 0;
+                pass = accounts[i].Password;
+                if (pass == most_popular_pass)
+                    continue;
+                for (int j = 0; j < accounts.Count; j++)
+                {
+                    if (pass == accounts[j].Password)
+                        count++;
+                }
+                if (count > max)
+                {
+                    max = count;
+                    most_popular_pass = pass;
+                }
+            }
+            MessageBox.Show("Most popular password is " + most_popular_pass + " Finded - " + max.ToString() + " times");
+        }
+
+        private void DialogHost_DialogClosing(object sender, MaterialDesignThemes.Wpf.DialogClosingEventArgs eventArgs)
+        {
+            int count = 0;
+            for (int i = 0; i < accounts.Count; i++)
+            {
+                if (accounts[i].Login == LoginForStat.Text)
+                    count++;
+            }
+            MessageBox.Show("Login - " + LoginForStat.Text + " Finded - " + count.ToString() + " times");
+        }
+        private void DialogHost_DialogClosing_pass(object sender, MaterialDesignThemes.Wpf.DialogClosingEventArgs eventArgs)
+        {
+            int count = 0;
+            for (int i = 0; i < accounts.Count; i++)
+            {
+                if (accounts[i].Password == PasswordForStat.Text)
+                    count++;
+            }
+            MessageBox.Show("Password - " + PasswordForStat.Text + " Finded - " + count.ToString() + " times");
         }
     }
 }
