@@ -21,6 +21,7 @@ namespace Passwords_And_Logins
     public partial class MainWindow : Window
     {
         public List<User> List_for_users = new List<User>();
+        public int current_user = 0;
         public MainWindow()
         {
             InitializeComponent();
@@ -45,7 +46,13 @@ namespace Passwords_And_Logins
             SighUpWindow signUpWindow = new SighUpWindow();
             signUpWindow.Owner = this;
             signUpWindow.Show();
-    
+
+
+
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
 
         }
     }
@@ -55,5 +62,14 @@ namespace Passwords_And_Logins
         public string Email { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
+        public List<Account> accounts = new List<Account>();
+    }
+    public class Account
+    {
+        public string Login { get; set; }
+        public string Password { get; set; }
+        public string Link { get; set; }
+        public string SiteName { get; set; }
+        public string Description { get; set; }
     }
 }

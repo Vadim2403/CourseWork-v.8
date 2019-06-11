@@ -10,9 +10,15 @@
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto"        
-        Title="MainWindow" Height="400" Width="400">
+        Title="MainWindow" Height="400" Width="400" Closed="Window_Closed">
     <Grid>
+        <materialDesign:ColorZone Mode="Accent" Padding="16" Foreground="White" FontSize="30" FontWeight="Bold">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock VerticalAlignment="Center">Welcome</TextBlock>
+            </StackPanel>
+        </materialDesign:ColorZone>
         <Button Foreground="White" Name="SignInBtn" Width="100" HorizontalContentAlignment="Center" Margin="47,28,47,111" Content="Sign in" Click="Sign_In_Click"/>
         <Button Foreground="White" Name="SignUpBtn" Width="100" HorizontalContentAlignment="Center" Margin="47,110,47,29" Content="Sign up"  Click="Sign_Up_Click"/>
+        
     </Grid>
 </Window>

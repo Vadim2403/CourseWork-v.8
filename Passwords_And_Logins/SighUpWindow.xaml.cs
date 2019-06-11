@@ -23,7 +23,7 @@ namespace Passwords_And_Logins
         public SighUpWindow()
         {
             InitializeComponent();
-           
+
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -50,7 +50,7 @@ namespace Passwords_And_Logins
         private void LoginBox_LostFocus(object sender, RoutedEventArgs e)
         {
             bool find = false;
-            for(int i = 0; i < ((MainWindow)Owner).List_for_users.Count; i++)
+            for (int i = 0; i < ((MainWindow)Owner).List_for_users.Count; i++)
             {
                 if (((MainWindow)Owner).List_for_users[i].Login == LoginBox.Text)
                 {
@@ -59,7 +59,8 @@ namespace Passwords_And_Logins
                     break;
                 }
             }
-            if(find == false)
+            if (find == false)
                 FailLogin.Visibility = Visibility.Hidden;
         }
+    }
 }

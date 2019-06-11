@@ -20,6 +20,8 @@ namespace Passwords_And_Logins
     /// </summary>
     public partial class Window1 : Window
     {
+        bool Succsesful_login = false;
+
         public Window1()
         {
             InitializeComponent();
@@ -27,8 +29,44 @@ namespace Passwords_And_Logins
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            ((MainWindow)Owner).SignInBtn.IsEnabled = true;
-            ((MainWindow)Owner).SignUpBtn.IsEnabled = true;
+            if (Succsesful_login == false)
+            {
+                ((MainWindow)Owner).SignInBtn.IsEnabled = true;
+                ((MainWindow)Owner).SignUpBtn.IsEnabled = true;
+            }
+        }
+
+        private void LoginBtn_Click(object sender, RoutedEventArgs e)
+        {
+            bool log_true = false;
+            for (int i = 0; i < ((MainWindow)Owner).List_for_users.Count; i++)
+            {
+                if (((MainWindow)Owner).List_for_users[i].Login == LoginBox.Text)
+                {
+                    log_true = true;
+                    FailLogin.Visibility = Visibility.Hidden;
+                    if (((MainWindow)Owner).List_for_users[i].Password == PassField.Password.ToString())
+                    {
+                        UserWindow userWindow = new UserWindow(((MainWindow)this.Owner).List_for_users, ((MainWindow)this.Owner).current_user);
+                        userWindow.Owner = this.Owner;
+                        userWindow.Show();
+                        userWindow.TextUserName.Text = "You are logged in as : " +  LoginBox.Text;
+                        ((MainWindow)this.Owner).current_user = i;
+                        Succsesful_login = true;
+                        this.Close();
+
+                    }
+                    else
+                    {
+                        FailPass.Visibility = Visibility.Visible;
+                        break;
+                    }
+                }
+            }
+            if(log_true==false)
+            {
+                FailLogin.Visibility = Visibility.Visible;
+            }
         }
     }
 }
