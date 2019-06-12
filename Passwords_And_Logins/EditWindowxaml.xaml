@@ -34,7 +34,7 @@
         </materialDesign:ColorZone>
         <TextBox  Name="Login" Grid.Column="1" Grid.Row="2" TextAlignment="Left" FontSize="16" VerticalAlignment="Center"  Width="255" Height="38"/>
         <TextBox Name="Password"  Grid.Column="1" Grid.Row="3" TextAlignment="Left" FontSize="16" VerticalAlignment="Center"  Width="255" Height="38"/>
-        <Button Name="NeedDescriptionBtn" Content="Edit description" Grid.Column="1" Grid.Row="4" Width="180" Foreground="White" HorizontalContentAlignment="Center"></Button>
+        <Button Name="NeedDescriptionBtn" Content="Edit description" Grid.Column="1" Grid.Row="4" Width="180" Foreground="White" HorizontalContentAlignment="Center" Click="NeedDescriptionBtn_Click"></Button>
         <Button Name="FinishAddingBtn" Content="Ok" Grid.Column="1" Grid.Row="5" Width="100" Foreground="White" HorizontalContentAlignment="Center" Click="FinishAddingBtn_Click"></Button>
     </Grid>
 </Window>

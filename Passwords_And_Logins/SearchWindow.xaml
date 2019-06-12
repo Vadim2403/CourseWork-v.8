@@ -35,12 +35,16 @@
 
         </DataGrid>
 
-        <RadioButton Name="SearchBySiteName" VerticalAlignment="Top" Margin="0,30,0,0" FontSize="17" Content="Search by name" Grid.Row="1" Width="140" Foreground="Lime" HorizontalContentAlignment="Center"/>
-        <RadioButton IsChecked="True" Name="SearchByLogin" VerticalAlignment="Top" Margin="0,70,0,0" FontSize="17" Content="Search by login" Grid.Row="1" Width="140" Foreground="Lime" HorizontalContentAlignment="Center"/>
-        <RadioButton Name="SearchByPassword" VerticalAlignment="Top" Margin="0,110,0,0" FontSize="17" Content="Seatch by pass" Grid.Row="1" Width="140" Foreground="Lime" HorizontalContentAlignment="Center"/>
-        <RadioButton Name="SearchByLink" VerticalAlignment="Top" Margin="0,150,0,0" FontSize="17" Content="Seatch by link" Grid.Row="1" Width="140" Foreground="Lime" HorizontalContentAlignment="Center"/>
-        <RadioButton Name="SearchinDescription" VerticalAlignment="Top" Margin="0,190,0,0" FontSize="17" Content="Seatch in disc" Grid.Row="1" Width="140" Foreground="Lime" HorizontalContentAlignment="Center"/>
-        <TextBox Name="SearchText" VerticalAlignment="Top" Margin="0,240,0,0" FontSize="17"  Grid.Row="1" Width="140" Foreground="Lime" HorizontalContentAlignment="Center"/>
-        <Button Name="StartSearchBtn" Content="Search!" VerticalAlignment="Top" Margin="0,290,0,0" FontSize="17"  Grid.Row="1" Width="140" Foreground="White" HorizontalContentAlignment="Center" Click="StartSearchBtn_Click"/>
+        <CheckBox Name="SearchBySiteName" VerticalAlignment="Top" Margin="0,30,0,0" FontSize="17" Content="Search by name" Grid.Row="1" Width="140" Foreground="Lime" HorizontalContentAlignment="Center"/>
+        <CheckBox IsChecked="True" Name="SearchByLogin" VerticalAlignment="Top" Margin="0,70,0,0" FontSize="17" Content="Search by login" Grid.Row="1" Width="140" Foreground="Lime" HorizontalContentAlignment="Center"/>
+        <CheckBox Name="SearchByPassword" VerticalAlignment="Top" Margin="0,110,0,0" FontSize="17" Content="Search by pass" Grid.Row="1" Width="140" Foreground="Lime" HorizontalContentAlignment="Center"/>
+        <CheckBox Name="SearchByLink" VerticalAlignment="Top" Margin="0,150,0,0" FontSize="17" Content="Search by link" Grid.Row="1" Width="140" Foreground="Lime" HorizontalContentAlignment="Center"/>
+        <CheckBox Name="SearchinDescription" VerticalAlignment="Top" Margin="0,190,0,0" FontSize="17" Content="Search in desc" Grid.Row="1" Width="140" Foreground="Lime" HorizontalContentAlignment="Center"/>
+        <TextBox materialDesign:HintAssist.Hint="Searched login" Name="SearchedLogin" VerticalAlignment="Top" Margin="0,240,0,0" FontSize="17"  Grid.Row="1" Width="140" Foreground="Lime" HorizontalContentAlignment="Center"/>
+        <TextBox materialDesign:HintAssist.Hint="Searched Password" Name="SearchedPassword" VerticalAlignment="Top" Margin="0,290,0,0" FontSize="17"  Grid.Row="1" Width="140" Foreground="Lime" HorizontalContentAlignment="Center"/>
+        <TextBox materialDesign:HintAssist.Hint="Searched Name" Name="SearchedSiteName" VerticalAlignment="Top" Margin="0,340,0,0" FontSize="17"  Grid.Row="1" Width="140" Foreground="Lime" HorizontalContentAlignment="Center"/>
+        <TextBox materialDesign:HintAssist.Hint="Searched Link" Name="SearchedLink" VerticalAlignment="Top" Margin="0,390,0,0" FontSize="17"  Grid.Row="1" Width="140" Foreground="Lime" HorizontalContentAlignment="Center"/>
+        <TextBox materialDesign:HintAssist.Hint="Searched Desc" Name="SearchedDesc" VerticalAlignment="Top" Margin="0,440,0,0" FontSize="17"  Grid.Row="1" Width="140" Foreground="Lime" HorizontalContentAlignment="Center"/>
+        <Button  Name="StartSearchBtn" Content="Search" VerticalAlignment="Top" Margin="230,27,230,0" FontSize="17" Width="140" Foreground="White" HorizontalContentAlignment="Center" Click="StartSearchBtn_Click" Grid.Column="1"/>
     </Grid>
 </Window>

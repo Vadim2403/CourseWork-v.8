@@ -7,7 +7,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="UserWindow" Height="600" Width="800">
+        Title="UserWindow" Height="600" Width="800" Closing="Window_Closing">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="69"></RowDefinition>
@@ -57,6 +57,7 @@
             <Button  Content="Password Stats" Width="140" Foreground="White" HorizontalContentAlignment="Center" Click="ShowDialog_OnClick_2"
        HorizontalAlignment="Left" VerticalAlignment="Center" Margin="614,28,0,510"/>
         </materialDesign:DialogHost>
-
+        <Button Name="DeleteBtn" VerticalAlignment="Top" Margin="0,320,0,0" Content="Delete" Grid.Row="1" Width="140" Foreground="White" HorizontalContentAlignment="Center" Click="DeleteBtn_Click"/>
+        <Button Name="ExitBtn" VerticalAlignment="Top" Margin="0,370,0,0" Content="Exit" Grid.Row="1" Width="140" Foreground="White" HorizontalContentAlignment="Center" Click="ExitBtn_Click"/>
     </Grid>
 </Window>

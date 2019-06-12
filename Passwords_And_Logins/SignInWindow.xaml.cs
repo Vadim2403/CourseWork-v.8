@@ -47,6 +47,7 @@ namespace Passwords_And_Logins
                     FailLogin.Visibility = Visibility.Hidden;
                     if (((MainWindow)Owner).List_for_users[i].Password == PassField.Password.ToString())
                     {
+                        ((MainWindow)this.Owner).current_user = i;
                         UserWindow userWindow = new UserWindow(((MainWindow)this.Owner).List_for_users, ((MainWindow)this.Owner).current_user);
                         userWindow.Owner = this.Owner;
                         userWindow.Show();

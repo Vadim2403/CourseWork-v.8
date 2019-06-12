@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -11,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml.Serialization;
 
 namespace Passwords_And_Logins
 {
@@ -20,7 +23,7 @@ namespace Passwords_And_Logins
     public partial class UserWindow : Window
     {
         List<User> users;
-
+        bool iscoded = false;
         public List<Account> accounts;
         int current;
         public UserWindow(List<User>users, int current)
@@ -30,6 +33,7 @@ namespace Passwords_And_Logins
             this.current = current;
             accounts = users[current].accounts;
             GridOFaccounts.ItemsSource = accounts;
+            GridOFaccounts.Items.Refresh();
         }
 
 
@@ -43,12 +47,16 @@ namespace Passwords_And_Logins
 
         private void EditBtn_Click(object sender, RoutedEventArgs e)
         {
-            EditWindowxaml editWindowxaml = new EditWindowxaml();
-            editWindowxaml.Owner = this;
-            editWindowxaml.Show();
+            if (GridOFaccounts.SelectedItems.Count > 0)
+            {
+                EditWindowxaml editWindowxaml = new EditWindowxaml((Account)GridOFaccounts.SelectedItems[0]);
+                editWindowxaml.Owner = this;
+                editWindowxaml.Show();
+            }
+            else
+                MessageBox.Show("Select item for edit");
         }
-
-        private void CodeBtn_Click(object sender, RoutedEventArgs e)
+        public void code()
         {
             if (accounts.Count > 0)
             {
@@ -60,46 +68,57 @@ namespace Passwords_And_Logins
                     for (int j = 0; j < accounts[i].Password.Length; j++)
                     {
                         int digit;
-                        
-                           digit = Convert.ToInt32(accounts[i].Password[j]);
-                            digit += 10;
+
+                        digit = Convert.ToInt32(accounts[i].Password[j]);
+                        digit += 10;
                         if (digit > 255)
                             digit = 255;
-                            pass = pass + (char)digit;
+                        pass = pass + (char)digit;
 
-                 
-              
-                        
+
+
+
                     }
                     accounts[i].Password = pass;
 
                 }
                 CodeBtn.IsEnabled = false;
                 DeCodeBtn.IsEnabled = true;
+                iscoded = true;
                 GridOFaccounts.Items.Refresh();
             }
         }
-
-        private void DeCodeBtn_Click(object sender, RoutedEventArgs e)
+        public void Decode()
         {
             for (int i = 0; i < accounts.Count; i++)
             {
                 string pass = "";
                 for (int j = 0; j < accounts[i].Password.Length; j++)
                 {
-                   int digit = ((int)accounts[i].Password[j]) - 10;
+                    int digit = ((int)accounts[i].Password[j]) - 10;
 
-                        
- 
+
+
                     pass = pass + (char)digit;
 
                    
                 }
                 accounts[i].Password = pass;
             }
+
             CodeBtn.IsEnabled = true;
             DeCodeBtn.IsEnabled = false;
+            iscoded = false;
             GridOFaccounts.Items.Refresh();
+        }
+        private void CodeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            code();
+        }
+
+        private void DeCodeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Decode();
         }
 
         private void SearchBtn_Click(object sender, RoutedEventArgs e)
@@ -189,6 +208,41 @@ namespace Passwords_And_Logins
                     count++;
             }
             MessageBox.Show("Password - " + PasswordForStat.Text + " Finded - " + count.ToString() + " times");
+        }
+
+        private void ExitBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (iscoded == true)
+            {
+                Decode();
+
+            }
+            ((MainWindow)this.Owner).List_for_users[((MainWindow)this.Owner).current_user].accounts = accounts;
+            ((MainWindow)this.Owner).SignInBtn.IsEnabled = true;
+            ((MainWindow)this.Owner).SignUpBtn.IsEnabled = true;
+            XmlSerializer ser = new XmlSerializer(typeof(List<User>));
+
+            using (FileStream fs = new FileStream("UsersAndAccounts.xml", FileMode.Create))
+            {
+                ser.Serialize(fs, ((MainWindow)this.Owner).List_for_users);
+            }
+           
+        }
+
+        private void DeleteBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (GridOFaccounts.SelectedItems.Count > 0)
+            {
+                accounts.RemoveAt(GridOFaccounts.SelectedIndex);
+                GridOFaccounts.Items.Refresh();
+            }
+            else
+                MessageBox.Show("Select item for edit");
         }
     }
 }

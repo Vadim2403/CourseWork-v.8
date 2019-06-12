@@ -34,7 +34,7 @@ namespace Passwords_And_Logins
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
-            ((MainWindow)Owner).List_for_users.Add(new User { Email = EmailBox.Text, Password = PassField.Password.ToString(), Login = LoginBox.Text });
+            ((MainWindow)Owner).List_for_users.Add(new User { Email = EmailBox.Text, Password = PassField.Password.ToString(), Login = LoginBox.Text, accounts=new List<Account>()});
             this.Close();
         }
 

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Serialization;
 
 namespace Passwords_And_Logins
 {
@@ -22,9 +25,19 @@ namespace Passwords_And_Logins
     {
         public List<User> List_for_users = new List<User>();
         public int current_user = 0;
+        string filename = "UsersAndAccounts.xml";
         public MainWindow()
         {
             InitializeComponent();
+            if(File.Exists(filename))
+            {
+                using (var reader = new StreamReader(filename))
+                {
+                    XmlSerializer deserializer = new XmlSerializer(typeof(List<User>));
+                    List_for_users = (List<User>)deserializer.Deserialize(reader);
+                }
+            }
+
         }
 
         private void Sign_In_Click(object sender, RoutedEventArgs e)
@@ -56,7 +69,7 @@ namespace Passwords_And_Logins
 
         }
     }
-
+    [Serializable]
     public class User
     {
         public string Email { get; set; }
@@ -64,6 +77,7 @@ namespace Passwords_And_Logins
         public string Password { get; set; }
         public List<Account> accounts = new List<Account>();
     }
+    [Serializable]
     public class Account
     {
         public string Login { get; set; }

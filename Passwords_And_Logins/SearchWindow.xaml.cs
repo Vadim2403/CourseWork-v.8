@@ -25,79 +25,109 @@ namespace Passwords_And_Logins
             InitializeComponent();
             GridOFFindedaccounts.ItemsSource = forFind;
         }
-        public void SearchLogin()
+        
+      
+        public void SearchAcc()
         {
             forFind.Clear();
+            bool isvalid = false;
             for (int i = 0; i < ((UserWindow)this.Owner).accounts.Count; i++)
             {
-                if (((UserWindow)this.Owner).accounts[i].Login == SearchText.Text)
+                isvalid = false;
+                if(SearchByLogin.IsChecked == true)
                 {
-                    forFind.Add(((UserWindow)this.Owner).accounts[i]);
+                    if (SearchedLogin.Text == ((UserWindow)this.Owner).accounts[i].Login)
+                    {
+                        isvalid = true;
+                    }
+                    else
+                    {
+                        isvalid = false;
+                        continue;
+                    }
                 }
-            }
-            GridOFFindedaccounts.Items.Refresh();
-        }
-        public void SearchPassword()
-        {
-            forFind.Clear();
-            for (int i = 0; i < ((UserWindow)this.Owner).accounts.Count; i++)
-            {
-                if (((UserWindow)this.Owner).accounts[i].Password == SearchText.Text)
+                if (SearchByPassword.IsChecked == true)
                 {
-                    forFind.Add(((UserWindow)this.Owner).accounts[i]);
+                    if (SearchedPassword.Text == ((UserWindow)this.Owner).accounts[i].Password)
+                    {
+                        isvalid = true;
+                    }
+                    else
+                    {
+                        isvalid = false;
+                        continue;
+                    }
                 }
-            }
-            GridOFFindedaccounts.Items.Refresh();
-        }
-        public void SearchLink()
-        {
-            forFind.Clear();
-            for (int i = 0; i < ((UserWindow)this.Owner).accounts.Count; i++)
-            {
-                if (((UserWindow)this.Owner).accounts[i].Link == SearchText.Text)
+                if (SearchBySiteName.IsChecked == true)
                 {
-                    forFind.Add(((UserWindow)this.Owner).accounts[i]);
+                    if (SearchedSiteName.Text == ((UserWindow)this.Owner).accounts[i].SiteName)
+                    {
+                        isvalid = true;
+                    }
+                    else
+                    {
+                        isvalid = false;
+                        continue;
+                    }
                 }
-            }
-            GridOFFindedaccounts.Items.Refresh();
-        }
+                if (SearchByLink.IsChecked == true)
+                {
+                    if (SearchedLink.Text == ((UserWindow)this.Owner).accounts[i].Link)
+                    {
+                        isvalid = true;
+                    }
+                    else
+                    {
+                        isvalid = false;
+                        continue;
+                    }
+                }
+                if (SearchinDescription.IsChecked == true)
+                {
+                    string desc_from_list = ((UserWindow)this.Owner).accounts[i].Description;
+                    string[] arr_fromtextbox = SearchedDesc.Text.Split(new char[] { ' ' });
+                    string[] arr_fromdesc = desc_from_list.Split(new char[] { ' ' });
+                    for (int z = 0; z < arr_fromdesc.Length; z++)
+                        this.Title += arr_fromdesc[z];
+                    bool allfind = false;
+                    for (int j = 0; j < arr_fromtextbox.Length; j++)
+                    {
+                        for (int k = 0; k < arr_fromdesc.Length; k++)
+                        {
+                            if (arr_fromdesc[k] == arr_fromtextbox[j])
+                            {
+                                allfind = true;
+                                break;
+                            }
+                        }
+                        if (allfind == false)
+                        {
+                            isvalid = false;
+                            break;
+                        }
+                    }
+                    if (allfind == true)
+                        isvalid = true;
+                    else if (isvalid == false)
+                        continue;
+                }
+                if (isvalid == true)
+                    forFind.Add(((UserWindow)this.Owner).accounts[i]);
 
-        public void SearchSiteName()
-        {
-            forFind.Clear();
-            for (int i = 0; i < ((UserWindow)this.Owner).accounts.Count; i++)
-            {
-                if (((UserWindow)this.Owner).accounts[i].SiteName == SearchText.Text)
-                {
-                    forFind.Add(((UserWindow)this.Owner).accounts[i]);
-                }
+
             }
             GridOFFindedaccounts.Items.Refresh();
-        }
-        public void SearchInDesck()
-        {
-            forFind.Clear();
-            for (int i = 0; i < ((UserWindow)this.Owner).accounts.Count; i++)
-            {
-                if (((UserWindow)this.Owner).accounts[i].Description.Contains(SearchText.Text))
-                {
-                    forFind.Add(((UserWindow)this.Owner).accounts[i]);
-                }
-            }
-            GridOFFindedaccounts.Items.Refresh();
+
         }
         private void StartSearchBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (SearchByLogin.IsChecked == true)
-                SearchLogin();
-            else if (SearchByPassword.IsChecked == true)
-                SearchPassword();
-            else if (SearchBySiteName.IsChecked == true)
-                SearchSiteName();
-            else if (SearchByLink.IsChecked == true)
-                SearchLink();
-            else if (SearchinDescription.IsChecked == true)
-                SearchInDesck();
+            SearchAcc();
+        }
+
+        private void ClearBtn_Copy_Click(object sender, RoutedEventArgs e)
+        {
+            forFind.Clear();
+            GridOFFindedaccounts.Items.Refresh();
         }
     }
 

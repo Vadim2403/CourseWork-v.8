@@ -20,21 +20,30 @@ namespace Passwords_And_Logins
     public partial class EditWindowxaml : Window
     {
         public string Description_for_nextWindow;
-        public EditWindowxaml()
+        public Account acc;
+        public EditWindowxaml(Account acc)
         {
             InitializeComponent();
-            UserWindow uw = (UserWindow)this.Owner;
-            Login.Text = ((Account)uw.GridOFaccounts.SelectedItems[0]).Login;
-            Password.Text = ((Account)uw.GridOFaccounts.SelectedItems[0]).Password;
-            Description_for_nextWindow = ((Account)uw.GridOFaccounts.SelectedItems[0]).Description;
+            this.acc = acc;
+            Login.Text = acc.Login;
+            Password.Text = acc.Password;
+            Description_for_nextWindow = acc.Description;
         }
 
         private void FinishAddingBtn_Click(object sender, RoutedEventArgs e)
         {
-            UserWindow uw = (UserWindow)this.Owner;
-            ((Account)uw.GridOFaccounts.SelectedItems[0]).Login = Login.Text;
-            ((Account)uw.GridOFaccounts.SelectedItems[0]).Password = Password.Text;
-            ((Account)uw.GridOFaccounts.SelectedItems[0]).Description = Description_for_nextWindow;
+            acc.Login = Login.Text;
+            acc.Password = Password.Text;
+            acc.Description = Description_for_nextWindow;
+            ((UserWindow)this.Owner).GridOFaccounts.Items.Refresh();
+            this.Close();
+        }
+
+        private void NeedDescriptionBtn_Click(object sender, RoutedEventArgs e)
+        {
+            DescriptionWindow descriptionWindow = new DescriptionWindow();
+            descriptionWindow.Owner = this;
+            descriptionWindow.Show();
         }
     }
 }
