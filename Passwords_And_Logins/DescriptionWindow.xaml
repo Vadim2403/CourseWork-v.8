@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Passwords_And_Logins"
         mc:Ignorable="d"
          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="DescriptionWindow" Height="300" Width="300" Loaded="Window_Loaded" ResizeMode="NoResize">
+        Title="DescriptionWindow" WindowStyle="None" Height="300" Width="300" Loaded="Window_Loaded" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="205">

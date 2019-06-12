@@ -10,7 +10,7 @@
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto"        
-        Title="MainWindow" Height="400" Width="400" Closed="Window_Closed">
+        Title="MainWindow" Height="400" Width="400" Closed="Window_Closed" Closing="Window_Closing">
     <Grid>
         <materialDesign:ColorZone Mode="Accent" Padding="16" Foreground="White" FontSize="30" FontWeight="Bold">
             <StackPanel Orientation="Horizontal">

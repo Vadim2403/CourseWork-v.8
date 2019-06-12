@@ -68,6 +68,16 @@ namespace Passwords_And_Logins
         {
 
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            XmlSerializer ser = new XmlSerializer(typeof(List<User>));
+
+            using (FileStream fs = new FileStream(filename, FileMode.Create))
+            {
+                ser.Serialize(fs, List_for_users);
+            }
+        }
     }
     [Serializable]
     public class User

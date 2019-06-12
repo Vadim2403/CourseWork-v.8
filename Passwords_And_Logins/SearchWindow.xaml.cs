@@ -86,29 +86,13 @@ namespace Passwords_And_Logins
                 {
                     string desc_from_list = ((UserWindow)this.Owner).accounts[i].Description;
                     string[] arr_fromtextbox = SearchedDesc.Text.Split(new char[] { ' ' });
-                    string[] arr_fromdesc = desc_from_list.Split(new char[] { ' ' });
-                    for (int z = 0; z < arr_fromdesc.Length; z++)
-                        this.Title += arr_fromdesc[z];
-                    bool allfind = false;
                     for (int j = 0; j < arr_fromtextbox.Length; j++)
                     {
-                        for (int k = 0; k < arr_fromdesc.Length; k++)
-                        {
-                            if (arr_fromdesc[k] == arr_fromtextbox[j])
-                            {
-                                allfind = true;
-                                break;
-                            }
-                        }
-                        if (allfind == false)
-                        {
-                            isvalid = false;
-                            break;
-                        }
+                        if (desc_from_list.Contains(arr_fromtextbox[j]))
+                            isvalid = true;
+                        else { isvalid = false; break; }
                     }
-                    if (allfind == true)
-                        isvalid = true;
-                    else if (isvalid == false)
+                    if (isvalid == false)
                         continue;
                 }
                 if (isvalid == true)

@@ -32,7 +32,7 @@
                 </TextBlock>
             </StackPanel>
         </materialDesign:ColorZone>
-        <DataGrid CanUserSortColumns="False" Grid.Column="1" CanUserAddRows="False" Name="GridOFaccounts" Width="600" Height="400" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Row="1"/>
+        <DataGrid IsReadOnly="True" CanUserSortColumns="False" Grid.Column="1" CanUserAddRows="False" Name="GridOFaccounts" Width="600" Height="400" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Row="1"/>
 
         <Button Name="MostPopularLogins" Grid.Column="1" FontSize="12" VerticalAlignment="Top" Margin="10,459,450,0" Content="Most Popular login" Grid.Row="1" Width="140" Foreground="White" HorizontalContentAlignment="Center" Click="MostPopularLogins_Click" />
         <Button Name="MostPopularPasses" Grid.Column="1" FontSize="12" VerticalAlignment="Top" Margin="447,459,13,0" Content="Most Popular pass" Grid.Row="1" Width="140" Foreground="White" HorizontalContentAlignment="Center" Click="MostPopularPasses_Click" />
@@ -41,23 +41,39 @@
         <Button Name="SearchBtn" VerticalAlignment="Top" Margin="0,170,0,0" Content="Search" Grid.Row="1" Width="140" Foreground="White" HorizontalContentAlignment="Center" Click="SearchBtn_Click"/>
         <Button Name="CodeBtn" VerticalAlignment="Top" Margin="0,220,0,0" Content="Code Password" Grid.Row="1" Width="140" Foreground="White" HorizontalContentAlignment="Center" Click="CodeBtn_Click" />
         <Button IsEnabled="False" Name="DeCodeBtn" VerticalAlignment="Top" Margin="0,270,0,0" Content="DeCode Password" Grid.Row="1" Width="140" Foreground="White" HorizontalContentAlignment="Center" Click="DeCodeBtn_Click" />
+        <Button Name="DeleteBtn" VerticalAlignment="Top" Margin="0,320,0,0" Content="Delete" Grid.Row="1" Width="140" Foreground="White" HorizontalContentAlignment="Center" Click="DeleteBtn_Click"/>
+        <Button Name="ExitBtn" VerticalAlignment="Top" Margin="0,370,0,0" Content="Exit" Grid.Row="1" Width="140" Foreground="White" HorizontalContentAlignment="Center" Click="ExitBtn_Click"/>
+       
         
-
         <materialDesign:DialogHost DialogClosing="DialogHost_DialogClosing" CloseOnClickAway="True" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="2"   x:Name="DialogHost">
             <materialDesign:DialogHost.DialogContent>
-                <TextBox Name="LoginForStat"  Margin="20"></TextBox>
+                <TextBox materialDesign:HintAssist.Hint="Login" Name="LoginForStat"  Margin="20"></TextBox>
             </materialDesign:DialogHost.DialogContent>
             <Button Content="Login Stats" Width="140" Foreground="White" HorizontalContentAlignment="Center" Click="ShowDialog_OnClick"
        HorizontalAlignment="Left" VerticalAlignment="Center" Margin="428,28,0,510"/>
         </materialDesign:DialogHost>
         <materialDesign:DialogHost DialogClosing="DialogHost_DialogClosing_pass" CloseOnClickAway="True" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="2"   x:Name="DialogHostFOrpass">
             <materialDesign:DialogHost.DialogContent>
-                <TextBox Name="PasswordForStat"  Margin="20"></TextBox>
+                <TextBox materialDesign:HintAssist.Hint="Password"  Name="PasswordForStat"  Margin="20"></TextBox>
             </materialDesign:DialogHost.DialogContent>
             <Button  Content="Password Stats" Width="140" Foreground="White" HorizontalContentAlignment="Center" Click="ShowDialog_OnClick_2"
        HorizontalAlignment="Left" VerticalAlignment="Center" Margin="614,28,0,510"/>
         </materialDesign:DialogHost>
-        <Button Name="DeleteBtn" VerticalAlignment="Top" Margin="0,320,0,0" Content="Delete" Grid.Row="1" Width="140" Foreground="White" HorizontalContentAlignment="Center" Click="DeleteBtn_Click"/>
-        <Button Name="ExitBtn" VerticalAlignment="Top" Margin="0,370,0,0" Content="Exit" Grid.Row="1" Width="140" Foreground="White" HorizontalContentAlignment="Center" Click="ExitBtn_Click"/>
+        
+        <materialDesign:DialogHost  CloseOnClickAway="True" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="2"   x:Name="DialogLoginAndPass1" DialogClosing="DialogLoginAndPass1_DialogClosing">
+            <materialDesign:DialogHost.DialogContent>
+                <TextBox materialDesign:HintAssist.Hint="Login"  Name="LoginStat"  Margin="20"></TextBox>
+            </materialDesign:DialogHost.DialogContent>
+            <Button Name="PassAndLoginStat" VerticalAlignment="Top" Grid.Column="0" Margin="0,490,600,0" Content="Pass and log Stat" Grid.Row="0" Width="140" Foreground="White" HorizontalContentAlignment="Center" Click="PassAndLoginStat_Click"/>
+        </materialDesign:DialogHost>
+        <materialDesign:DialogHost  CloseOnClickAway="True" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="2"   x:Name="DialogLoginAndPass2" DialogClosing="DialogLoginAndPass2_DialogClosing">
+            <materialDesign:DialogHost.DialogContent>
+                <TextBox materialDesign:HintAssist.Hint="Password"  Name="PassStat"  Margin="20"></TextBox>
+            </materialDesign:DialogHost.DialogContent>
+
+        </materialDesign:DialogHost>
+
+
+
     </Grid>
 </Window>

@@ -26,6 +26,8 @@ namespace Passwords_And_Logins
         bool iscoded = false;
         public List<Account> accounts;
         int current;
+        string Pstat;
+        string Lstat;
         public UserWindow(List<User>users, int current)
         {
             InitializeComponent();
@@ -231,7 +233,9 @@ namespace Passwords_And_Logins
             {
                 ser.Serialize(fs, ((MainWindow)this.Owner).List_for_users);
             }
-           
+            this.Owner.WindowState = WindowState.Maximized;
+            this.Owner.WindowState = WindowState.Normal;
+
         }
 
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
@@ -243,6 +247,30 @@ namespace Passwords_And_Logins
             }
             else
                 MessageBox.Show("Select item for edit");
+        }
+
+        private void PassAndLoginStat_Click(object sender, RoutedEventArgs e)
+        {
+            DialogLoginAndPass1.IsOpen = true;
+
+        }
+
+        private void DialogLoginAndPass1_DialogClosing(object sender, MaterialDesignThemes.Wpf.DialogClosingEventArgs eventArgs)
+        {
+            Lstat = LoginStat.Text;
+            DialogLoginAndPass2.IsOpen = true;
+        }
+
+        private void DialogLoginAndPass2_DialogClosing(object sender, MaterialDesignThemes.Wpf.DialogClosingEventArgs eventArgs)
+        {
+            Pstat = PassStat.Text;
+            int count = 0;
+            for (int i = 0; i < accounts.Count; i++)
+            {
+                if (accounts[i].Password == Pstat && accounts[i].Login == Lstat)
+                    count++;
+            }
+            MessageBox.Show("Password - " + Pstat + " and login - " + Lstat + " Finded - " + count.ToString() + " times");
         }
     }
 }

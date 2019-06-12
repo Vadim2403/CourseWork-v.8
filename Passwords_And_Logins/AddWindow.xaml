@@ -10,7 +10,7 @@
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto"    
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="AddWindow" Height="450" Width="450">
+        Title="AddWindow" Height="450" Width="450" Closing="Window_Closing">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
@@ -32,11 +32,17 @@
                 <TextBlock VerticalAlignment="Center">Adding</TextBlock>
             </StackPanel>
         </materialDesign:ColorZone>
-        <TextBox  Name="Login" Grid.Column="1" Grid.Row="2" TextAlignment="Left" FontSize="16" VerticalAlignment="Center"  Width="255" Height="38"/>
-        <TextBox Name="Password"  Grid.Column="1" Grid.Row="3" TextAlignment="Left" FontSize="16" VerticalAlignment="Center"  Width="255" Height="38"/>
-        <TextBox Name="Link"  Grid.Column="1" Grid.Row="4" TextAlignment="Left" FontSize="16" VerticalAlignment="Center"  Width="255" Height="38"/>
-        <TextBox Name="SiteName"  Grid.Column="1" Grid.Row="5" TextAlignment="Left" FontSize="16" VerticalAlignment="Center"  Width="255" Height="38"/>
+        <TextBox materialDesign:HintAssist.Hint="Login" Name="Login" Grid.Column="1" Grid.Row="2" TextAlignment="Left" FontSize="16" VerticalAlignment="Center"  Width="255" Height="38"/>
+        <TextBox materialDesign:HintAssist.Hint="Password" Name="Password"  Grid.Column="1" Grid.Row="3" TextAlignment="Left" FontSize="16" VerticalAlignment="Center"  Width="255" Height="38" TextChanged="Password_TextChanged"/>
+        <TextBox materialDesign:HintAssist.Hint="Link" Name="Link"  Grid.Column="1" Grid.Row="4" TextAlignment="Left" FontSize="16" VerticalAlignment="Center"  Width="255" Height="38" LostFocus="Link_LostFocus"/>
+        <TextBox materialDesign:HintAssist.Hint="Site name" Name="SiteName"  Grid.Column="1" Grid.Row="5" TextAlignment="Left" FontSize="16" VerticalAlignment="Center"  Width="255" Height="38"/>
         <Button Name="NeedDescriptionBtn" Content="Add description" Grid.Column="1" Grid.Row="6" Width="180" Foreground="White" HorizontalContentAlignment="Center" Click="NeedDescriptionBtn_Click"></Button>
         <Button Name="FinishAddingBtn" Content="Ok" Grid.Column="1" Grid.Row="7" Width="100" Foreground="White" HorizontalContentAlignment="Center" Click="FinishAddingBtn_Click"></Button>
+        <materialDesign:Snackbar Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3" FontSize="8" HorizontalAlignment="Stretch" x:Name="SnackbarBadPassword">
+            <materialDesign:SnackbarMessage Content="Password can not contain '/' '*' ' ', be shorter than 6 characters"/>
+        </materialDesign:Snackbar>
+        <materialDesign:Snackbar Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3" FontSize="8" HorizontalAlignment="Stretch" x:Name="SnackbarBadLink">
+            <materialDesign:SnackbarMessage Content="Link is bad"/>
+        </materialDesign:Snackbar>
     </Grid>
 </Window>

@@ -44,7 +44,7 @@ namespace Passwords_And_Logins
                 if (((MainWindow)Owner).List_for_users[i].Login == LoginBox.Text)
                 {
                     log_true = true;
-                    FailLogin.Visibility = Visibility.Hidden;
+                    SnackbarBadLogin.IsActive = false;
                     if (((MainWindow)Owner).List_for_users[i].Password == PassField.Password.ToString())
                     {
                         ((MainWindow)this.Owner).current_user = i;
@@ -59,14 +59,14 @@ namespace Passwords_And_Logins
                     }
                     else
                     {
-                        FailPass.Visibility = Visibility.Visible;
+                        SnackbarBadPassword.IsActive = true;
                         break;
                     }
                 }
             }
             if(log_true==false)
             {
-                FailLogin.Visibility = Visibility.Visible;
+                SnackbarBadLogin.IsActive = true;
             }
         }
     }

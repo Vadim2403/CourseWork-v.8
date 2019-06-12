@@ -32,18 +32,40 @@ namespace Passwords_And_Logins
 
         private void FinishAddingBtn_Click(object sender, RoutedEventArgs e)
         {
-            acc.Login = Login.Text;
-            acc.Password = Password.Text;
-            acc.Description = Description_for_nextWindow;
-            ((UserWindow)this.Owner).GridOFaccounts.Items.Refresh();
-            this.Close();
+            if (SnackbarBadPassword.IsActive == false)
+            {
+                acc.Login = Login.Text;
+                acc.Password = Password.Text;
+                acc.Description = Description_for_nextWindow;
+                ((UserWindow)this.Owner).GridOFaccounts.Items.Refresh();
+                this.Close();
+            }
         }
-
+        private void Password_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            bool bad = false;
+            for (int i = 0; i < Password.Text.Length; i++)
+            {
+                if (Password.Text[i] == ' ' || Password.Text[i] == '/' || Password.Text[i] == '*' | Password.Text[i] == '.' | Password.Text[i] == ',')
+                    bad = true;
+            }
+            if (Password.Text.Length < 6 || bad == true)
+            {
+                SnackbarBadPassword.IsActive = true;
+            }
+            else SnackbarBadPassword.IsActive = false;
+        }
         private void NeedDescriptionBtn_Click(object sender, RoutedEventArgs e)
         {
             DescriptionWindow descriptionWindow = new DescriptionWindow();
             descriptionWindow.Owner = this;
             descriptionWindow.Show();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            this.Owner.WindowState = WindowState.Maximized;
+            this.Owner.WindowState = WindowState.Normal;
         }
     }
 }
