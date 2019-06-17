@@ -48,8 +48,7 @@ namespace Passwords_And_Logins
             Window1 signInWindow = new Window1();
             signInWindow.Owner = this;
             signInWindow.Show();
-
-
+           
         }
         private void Sign_Up_Click(object sender, RoutedEventArgs e)
         {
@@ -59,8 +58,6 @@ namespace Passwords_And_Logins
             SighUpWindow signUpWindow = new SighUpWindow();
             signUpWindow.Owner = this;
             signUpWindow.Show();
-
-
 
         }
 

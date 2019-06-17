@@ -73,16 +73,16 @@ namespace Passwords_And_Logins
                 
                 if (Link.Text.Contains(help))
                     help = "";
-                WebRequest webRequest = HttpWebRequest.Create(help + Link.Text);
-                webRequest.Method = "HEAD";
                 try
                 {
+                    WebRequest webRequest = HttpWebRequest.Create(help + Link.Text);
+                      webRequest.Method = "HEAD";
                     using (WebResponse webResponse = webRequest.GetResponse())
                     {
                         SnackbarBadLink.IsActive = false;
                     }
                 }
-                catch (WebException ex)
+                catch (Exception ex)
                 {
                     SnackbarBadLink.IsActive = true;
                 }
