@@ -1,0 +1,57 @@
+﻿<Window x:Class="Passwords_And_Logins.SighUpWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Passwords_And_Logins"
+        mc:Ignorable="d"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Window1" Height="450" Width="450" Closed="Window_Closed"
+        >
+
+    <Grid>
+       
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="300"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <materialDesign:ColorZone Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Mode="Accent" Padding="16" Foreground="White" FontSize="30" FontWeight="Bold">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock VerticalAlignment="Center">Sign Up</TextBlock>
+            </StackPanel>
+        </materialDesign:ColorZone>
+        
+
+        
+        <TextBox materialDesign:HintAssist.Hint="Email" Name="EmailBox" Grid.Column="1" Grid.Row="1" TextAlignment="Left" FontSize="16" VerticalAlignment="Center"  Width="255" Height="38" LostFocus="EmailBox_LostFocus"/>
+        <TextBox materialDesign:HintAssist.Hint="Login" Name="LoginBox"  Grid.Column="1" Grid.Row="2" TextAlignment="Left" FontSize="16" VerticalAlignment="Center"  Width="255" Height="38" LostFocus="LoginBox_LostFocus"/>
+        <PasswordBox materialDesign:HintAssist.Hint="Password" Name="PassField" Grid.Column="1" Grid.Row="3" FontSize="16"  VerticalAlignment="Center" Width="255" Height="38" AutomationProperties.HelpText="Password"  PasswordChanged="PassField_PasswordChanged"/>
+        <PasswordBox materialDesign:HintAssist.Hint="Confirm Password"  Name="ConfPassField" Grid.Column="1" Grid.Row="4" FontSize="16"  VerticalAlignment="Center" Width="255" Height="38" LostFocus="ConfPassField_LostFocus"/>
+        <Button Foreground="White" Grid.Row="5" Grid.Column="1" Name="LoginBtn" Width="100" HorizontalContentAlignment="Center" Content="Finish" Click="LoginBtn_Click">
+        </Button>
+        <materialDesign:Snackbar Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" FontSize="8" HorizontalAlignment="Stretch" x:Name="SnackbarBadPassword">
+            <materialDesign:SnackbarMessage Content="Password can not contain '/' '*' ' ', be shorter than 6 characters"/>
+        </materialDesign:Snackbar>
+        <materialDesign:Snackbar Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" x:Name="SnackbarBadConfPassword">
+            <materialDesign:SnackbarMessage Content="Confirm Password is Fail"/>
+        </materialDesign:Snackbar>
+        <materialDesign:Snackbar Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" x:Name="SnackbarBadLogin">
+            <materialDesign:SnackbarMessage Content="Login is busy"/>
+        </materialDesign:Snackbar>
+        <materialDesign:Snackbar Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" x:Name="SnackbarBadEmail">
+            <materialDesign:SnackbarMessage Content="Email is busy"/>
+        </materialDesign:Snackbar>
+    </Grid>
+</Window>
